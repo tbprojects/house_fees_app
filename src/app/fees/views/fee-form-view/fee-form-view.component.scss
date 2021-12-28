@@ -1,0 +1,25 @@
+.fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.mat-form-field {
+  width: 180px;
+}
+
+.remove-confirmation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+}
