@@ -11,5 +11,5 @@ export class FeeListComponent {
   @Input() fees: Fee[] = [];
   trackByFn: TrackByFunction<Fee> = (index, fee: Fee) => fee.id;
 
-  columns = ['period', 'type', 'quantity', 'value', 'actions'];
+  columns = ['period', 'type', 'quantity', 'value', 'rate', 'actions'];
 }
