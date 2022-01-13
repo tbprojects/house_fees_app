@@ -8,7 +8,7 @@ import { feeConfig } from '../data/fee-config';
 
 @Injectable({providedIn: 'root'})
 export class FeeMappers {
-  private type: ChartType = 'line';
+  private type: ChartType = 'bar';
   private options: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
@@ -31,7 +31,7 @@ export class FeeMappers {
       },
     },
     scales: {
-      x: {title: {display: true, text: $localize `Month`}},
+      x: {stacked: true, title: {display: true, text: $localize `Month`}},
       y: {stacked: true, title: {display: true, text: $localize `Value`}}
     }
   }
@@ -81,10 +81,11 @@ export class FeeMappers {
     const datasets: ChartDataset[] = Array.from(types).map(type => {
       const fill = 'origin';
       const borderColor = feeConfig.get(type)!.color;
+      const hoverBackgroundColor = borderColor;
       const backgroundColor = `${borderColor}88`
       const label = feeConfig.get(type)!.label;
       const data = Array.from(sums.values()).map(sum => sum[type] ?? 0);
-      return {label, fill, data, borderColor, backgroundColor};
+      return {label, fill, data, borderColor, backgroundColor, hoverBackgroundColor};
     });
 
     return {labels, datasets, type: this.type, options: this.options};
