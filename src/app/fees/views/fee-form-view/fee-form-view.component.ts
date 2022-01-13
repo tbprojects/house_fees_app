@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Fee } from 'core/types/fee';
 import { lastValueFrom } from 'rxjs';
-import { feeTypeOptions } from '../../data/fee-type-options';
+import { feeConfig } from '../../data/fee-config';
 import { FeeFormBuilder } from '../../services/fee.form-builder';
 import { FeeService } from '../../services/fee.service';
 
@@ -16,7 +16,7 @@ import { FeeService } from '../../services/fee.service';
 export class FeeFormViewComponent implements OnInit {
   @ViewChild('removeConfirmMessage') removeConfirmMessage!: TemplateRef<void>;
 
-  feeTypeOptions = feeTypeOptions;
+  feeTypeOptions = Array.from(feeConfig.entries()).map(([value, {label}]) => ({value, label}));
   form = this.fb.buildForm();
 
   constructor(

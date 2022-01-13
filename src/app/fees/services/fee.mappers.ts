@@ -4,7 +4,7 @@ import { ChartDataset, ChartOptions } from 'chart.js';
 import { Fee } from 'core/types/fee';
 import { FeeType } from 'core/types/fee-type';
 import { differenceInCalendarDays, eachMonthOfInterval, endOfDay, endOfMonth, startOfDay } from 'date-fns';
-import { feeTypeOptions } from '../data/fee-type-options';
+import { feeConfig } from '../data/fee-config';
 
 @Injectable({providedIn: 'root'})
 export class FeeMappers {
@@ -70,9 +70,11 @@ export class FeeMappers {
     // prepare datasets per fee type
     const datasets: ChartDataset[] = Array.from(types).map(type => {
       const fill = 'origin';
-      const label = feeTypeOptions.find(option => option.value === type)!.label;
+      const borderColor = feeConfig.get(type)!.color;
+      const backgroundColor = `${borderColor}88`
+      const label = feeConfig.get(type)!.label;
       const data = Array.from(sums.values()).map(sum => sum[type] ?? 0);
-      return {label, fill, data};
+      return {label, fill, data, borderColor, backgroundColor};
     });
 
     return {labels, datasets, options: this.options};

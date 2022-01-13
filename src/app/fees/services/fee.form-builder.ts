@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
-import { defaultFeeTypeUnits } from '../data/default-fee-type-units';
+import { feeConfig } from '../data/fee-config';
 
 @Injectable()
 export class FeeFormBuilder implements OnDestroy {
@@ -20,7 +20,7 @@ export class FeeFormBuilder implements OnDestroy {
 
     form.get('type')!.valueChanges
       .pipe(takeUntil(this.destroy))
-      .subscribe(type => form.get('unit')!.setValue(defaultFeeTypeUnits.get(type) ?? ''))
+      .subscribe(type => form.get('unit')!.setValue(feeConfig.get(type)?.unit ?? ''))
 
     return form;
   }
