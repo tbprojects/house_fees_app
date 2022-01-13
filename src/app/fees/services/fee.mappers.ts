@@ -1,6 +1,6 @@
 import { formatDate, formatNumber } from '@angular/common';
 import { Inject, Injectable, LOCALE_ID } from '@angular/core';
-import { ChartDataset, ChartOptions } from 'chart.js';
+import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
 import { Fee } from 'core/types/fee';
 import { FeeType } from 'core/types/fee-type';
 import { differenceInCalendarDays, eachMonthOfInterval, endOfDay, endOfMonth, startOfDay } from 'date-fns';
@@ -8,7 +8,8 @@ import { feeConfig } from '../data/fee-config';
 
 @Injectable({providedIn: 'root'})
 export class FeeMappers {
-  private options = {
+  private type: ChartType = 'line';
+  private options: ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
@@ -16,6 +17,15 @@ export class FeeMappers {
         callbacks: {
           label: (tooltipItem: any) => {
             return `${tooltipItem.dataset.label}: ${formatNumber(tooltipItem.raw, this.localeId, '1.2-2')}`;
+          },
+          footer: ([tooltipItem]: any[]) => {
+            const sum = Object.entries(tooltipItem.parsed._stacks.y)
+              .reduce((acc, [index, value]) => {
+                return isNaN(+index) ? acc : acc + (value as number);
+              }, 0)
+            const formattedValue = formatNumber(sum, this.localeId, '1.2-2');
+            const totalLabel = $localize `Month sum`;
+            return `${totalLabel}: ${formattedValue}`;
           }
         }
       },
@@ -29,10 +39,10 @@ export class FeeMappers {
   constructor(@Inject(LOCALE_ID) private localeId: string) {
   }
 
-  feesToChart(fees: Fee[]): {labels: string[], datasets: ChartDataset[], options: ChartOptions} {
+  feesToChart(fees: Fee[]): {type: ChartType, labels: string[], datasets: ChartDataset[], options: ChartOptions} {
     // return empty config when there are not fees
     if (fees.length === 0) {
-      return {labels: [], datasets: [], options: this.options};
+      return {labels: [], datasets: [], type: this.type, options: this.options};
     }
 
     // discover boundary dates
@@ -77,6 +87,6 @@ export class FeeMappers {
       return {label, fill, data, borderColor, backgroundColor};
     });
 
-    return {labels, datasets, options: this.options};
+    return {labels, datasets, type: this.type, options: this.options};
   }
 }

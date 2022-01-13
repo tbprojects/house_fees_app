@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnChanges } from '@angular/core';
-import { ChartDataset, ChartOptions } from 'chart.js';
+import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
 import { Fee } from 'core/types/fee';
 import { FeeMappers } from '../../services/fee.mappers';
 
@@ -12,6 +12,7 @@ import { FeeMappers } from '../../services/fee.mappers';
 export class FeeChartComponent implements OnChanges {
   @Input() fees: Fee[] = [];
   labels: string[] = []
+  type: ChartType = 'line';
   datasets: ChartDataset[] = [];
   options: ChartOptions = {};
 
@@ -19,7 +20,8 @@ export class FeeChartComponent implements OnChanges {
   }
 
   ngOnChanges(): void {
-    const {labels, datasets, options} = this.feeMappers.feesToChart(this.fees);
+    const {type, labels, datasets, options} = this.feeMappers.feesToChart(this.fees);
+    this.type = type;
     this.labels = labels;
     this.datasets = datasets;
     this.options = options;
