@@ -7,6 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "extract-i18n": "ng extract-i18n --output-path src/locale",
+    "source-explore": "ng build --source-map=true --named-chunks=true --output-hashing=none && source-map-explorer dist/house-fees/en-GB/**/*.js",
     "test": "ng test",
     "lint": "ng lint"
   },
