@@ -9,78 +9,6 @@
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5012084291992448490" datatype="html">
-        <source>Fees</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/components/fee-list/fee-list.component.html</context>
-          <context context-type="linenumber">2</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5280218112746407598" datatype="html">
-        <source>New</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/components/fee-list/fee-list.component.html</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1507949699959470925" datatype="html">
-        <source>Period</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/components/fee-list/fee-list.component.html</context>
-          <context context-type="linenumber">8</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8650499415827640724" datatype="html">
-        <source>Type</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/components/fee-list/fee-list.component.html</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.html</context>
-          <context context-type="linenumber">21</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6762504134540024018" datatype="html">
-        <source>Quantity</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/components/fee-list/fee-list.component.html</context>
-          <context context-type="linenumber">20</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.html</context>
-          <context context-type="linenumber">33</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6555318547274416232" datatype="html">
-        <source>Value</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/components/fee-list/fee-list.component.html</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/services/fee.mappers.ts</context>
-          <context context-type="linenumber">35</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.html</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5639297788212274461" datatype="html">
-        <source>Rate</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/components/fee-list/fee-list.component.html</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7585826646011739428" datatype="html">
-        <source>Edit</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/components/fee-list/fee-list.component.html</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="6399303218734406494" datatype="html">
         <source>Water</source>
         <context-group purpose="location">
@@ -159,6 +87,21 @@
           <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6555318547274416232" datatype="html">
+        <source>Value</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/services/fee.mappers.ts</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-list-view/fee-list-view.component.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1740362155844426496" datatype="html">
         <source>Edit Fee</source>
         <context-group purpose="location">
@@ -185,6 +128,32 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.html</context>
           <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8650499415827640724" datatype="html">
+        <source>Type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-list-view/fee-list-view.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-list-view/fee-list-view.component.html</context>
+          <context context-type="linenumber">25,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6762504134540024018" datatype="html">
+        <source>Quantity</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-list-view/fee-list-view.component.html</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8932917860978648376" datatype="html">
@@ -252,6 +221,45 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.ts</context>
           <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5012084291992448490" datatype="html">
+        <source>Fees</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-list-view/fee-list-view.component.html</context>
+          <context context-type="linenumber">2,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5280218112746407598" datatype="html">
+        <source>New</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-list-view/fee-list-view.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1507949699959470925" datatype="html">
+        <source>Period</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-list-view/fee-list-view.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-list-view/fee-list-view.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5639297788212274461" datatype="html">
+        <source>Rate</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-list-view/fee-list-view.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7585826646011739428" datatype="html">
+        <source>Edit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-list-view/fee-list-view.component.html</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
     </body>

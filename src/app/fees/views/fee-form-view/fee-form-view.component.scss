@@ -5,7 +5,8 @@
 }
 
 .mat-form-field {
-  width: 180px;
+  min-width: 180px;
+  flex: 1;
 }
 
 .remove-confirmation {

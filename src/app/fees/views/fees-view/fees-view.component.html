@@ -2,10 +2,6 @@
   <app-fee-chart *ngIf="fees | async as fees" [fees]="fees"></app-fee-chart>
 </mat-card>
 
-<mat-card class="list-card">
-  <app-fee-list *ngIf="fees | async as fees" [fees]="fees"></app-fee-list>
-</mat-card>
-
-<mat-card class="form-card" [class.hidden]="!isFormActive">
+<mat-card class="data-card">
   <router-outlet></router-outlet>
 </mat-card>

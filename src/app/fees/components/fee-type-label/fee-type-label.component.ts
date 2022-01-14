@@ -9,6 +9,7 @@ import { feeConfig } from '../../data/fee-config';
 })
 export class FeeTypeLabelComponent implements OnChanges {
   @Input() type!: FeeType;
+  @Input() size: null | 'short' | 'regular' = 'regular';
 
   @HostBinding('style.background-color')
   color: string = '';
@@ -18,7 +19,7 @@ export class FeeTypeLabelComponent implements OnChanges {
 
   ngOnChanges() {
     const {label, color} = feeConfig.get(this.type)!;
-    this.label = label;
+    this.label = this.size === 'short' ? label[0] : label;
     this.color = color;
   }
 }

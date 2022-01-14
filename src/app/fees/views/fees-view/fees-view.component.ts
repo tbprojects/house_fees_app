@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { FeeService } from '../../services/fee.service';
 
 @Component({
@@ -10,9 +9,5 @@ import { FeeService } from '../../services/fee.service';
 export class FeesViewComponent {
   fees = this.feeService.getAll();
 
-  constructor(private feeService: FeeService, private route: ActivatedRoute) {}
-
-  get isFormActive(): boolean {
-    return Boolean(this.route.firstChild);
-  }
+  constructor(private feeService: FeeService) {}
 }
