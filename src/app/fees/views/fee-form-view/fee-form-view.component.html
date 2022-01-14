@@ -18,7 +18,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-label>Type</mat-label>
+      <mat-label i18n>Type</mat-label>
       <mat-select  [formControl]="form.get('type') | asFormControl">
         <mat-option *ngFor="let option of feeTypeOptions" [value]="option.value">{{option.label}}</mat-option>
       </mat-select>
