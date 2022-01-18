@@ -4,3 +4,15 @@
   height: calc(100% - 96px);
   overflow: auto;
 }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.sidenav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

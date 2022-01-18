@@ -1,7 +1,8 @@
 import { FeeType } from './fee-type';
 
 export interface Fee {
-  id?: number;
+  uuid?: string;
+  houseUuid?: string;
   type: FeeType | null;
   quantity: number;
   unit: string;

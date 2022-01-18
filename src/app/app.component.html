@@ -1,7 +1,19 @@
-<mat-toolbar color="primary">
-  <span i18n>House Fees</span>
-</mat-toolbar>
+<mat-sidenav-container class="sidenav">
+  <mat-sidenav #sidenav mode="side" position="end">
+    <app-houses-menu></app-houses-menu>
+  </mat-sidenav>
 
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <span i18n>House Fees</span>
+      <span class="spacer"></span>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

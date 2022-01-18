@@ -1,6 +1,13 @@
 <div class="header">
-  <h2 i18n>Fees</h2>
-  <a type="button" mat-raised-button color="primary" routerLink="new" i18n>New</a>
+  <h2 class="header-title">{{house | async | houseName}}</h2>
+  <button mat-icon-button [matMenuTriggerFor]="houseMenu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #houseMenu="matMenu">
+    <button mat-menu-item i18n (click)="remove()">Remove</button>
+  </mat-menu>
+  <span class="spacer"></span>
+  <a type="button" mat-raised-button color="primary" routerLink="new" i18n>New Fee</a>
 </div>
 
 <table mat-table *ngIf="fees | async as fees" [dataSource]="fees" [trackBy]="trackByFn">
@@ -46,7 +53,7 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let fee" class="actions">
-      <a type="button" mat-button [routerLink]="[fee.id]" i18n>Edit</a>
+      <a type="button" mat-button [routerLink]="[fee.uuid]" i18n>Edit</a>
     </td>
   </ng-container>
 

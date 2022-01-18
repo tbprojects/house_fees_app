@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { FeeService } from '../../services/fee.service';
+import { ActivatedRoute } from '@angular/router';
+import { FeeService } from 'core/services/fee.service';
+import { switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-fees-view',
@@ -7,7 +9,10 @@ import { FeeService } from '../../services/fee.service';
   styleUrls: ['./fees-view.component.scss']
 })
 export class FeesViewComponent {
-  fees = this.feeService.getAll();
+  fees = this.route.data
+    .pipe(
+      switchMap(data => this.feeService.getAll(data['house'].uuid))
+    );
 
-  constructor(private feeService: FeeService) {}
+  constructor(private feeService: FeeService, private route: ActivatedRoute) {}
 }

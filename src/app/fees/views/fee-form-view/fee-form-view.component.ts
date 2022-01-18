@@ -1,11 +1,12 @@
-import { Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FeeService } from 'core/services/fee.service';
 import { Fee } from 'core/types/fee';
 import { lastValueFrom } from 'rxjs';
+import { ConfirmSnackbarComponent } from 'shared/components/confirm-snackbar/confirm-snackbar.component';
 import { feeConfig } from '../../data/fee-config';
 import { FeeFormBuilder } from '../../services/fee.form-builder';
-import { FeeService } from '../../services/fee.service';
 
 @Component({
   selector: 'app-fee-form-view-view',
@@ -14,8 +15,6 @@ import { FeeService } from '../../services/fee.service';
   providers: [FeeFormBuilder]
 })
 export class FeeFormViewComponent implements OnInit {
-  @ViewChild('removeConfirmMessage') removeConfirmMessage!: TemplateRef<void>;
-
   feeTypeOptions = Array.from(feeConfig.entries()).map(([value, {label}]) => ({value, label}));
   form = this.fb.buildForm();
 
@@ -28,8 +27,8 @@ export class FeeFormViewComponent implements OnInit {
     private elRef: ElementRef,
   ) { }
 
-  get feeId(): number {
-    return this.form.get('id')!.value;
+  get feeUuid(): string {
+    return this.form.get('uuid')!.value;
   }
 
   ngOnInit() {
@@ -55,11 +54,11 @@ export class FeeFormViewComponent implements OnInit {
   }
 
   async remove() {
-    const confirmRef = this.snackBar.openFromTemplate(this.removeConfirmMessage, {duration: undefined})
+    const confirmRef = this.snackBar.openFromComponent(ConfirmSnackbarComponent, {duration: undefined})
     const result = await lastValueFrom(confirmRef.afterDismissed());
 
     if (result.dismissedByAction) {
-      await this.feeService.remove(this.feeId);
+      await this.feeService.remove(this.feeUuid);
       this.snackBar.open($localize `Fee removed!`);
       this.router.navigate(['..'], {relativeTo: this.route});
     }

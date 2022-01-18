@@ -1,4 +1,4 @@
-<h2 *ngIf="feeId; else newFeeHeadline" i18n>Edit Fee</h2>
+<h2 *ngIf="feeUuid; else newFeeHeadline" i18n>Edit Fee</h2>
 <ng-template #newFeeHeadline><h2 i18n>New Fee</h2></ng-template>
 
 <form [formGroup]="form" (ngSubmit)="save()">
@@ -42,7 +42,7 @@
 
   <div class="actions">
     <div>
-      <button type="button" mat-raised-button *ngIf="feeId" (click)="remove()" color="warn" i18n>Delete</button>
+      <button type="button" mat-raised-button *ngIf="feeUuid" (click)="remove()" color="warn" i18n>Delete</button>
     </div>
 
     <div class="form-actions">

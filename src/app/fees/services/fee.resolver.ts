@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
+import { FeeService } from 'core/services/fee.service';
 import { Fee } from 'core/types/fee';
-import { FeeService } from './fee.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,16 +10,20 @@ export class FeeResolver implements Resolve<Fee> {
   constructor(private feeService: FeeService) {}
 
   async resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Promise<Fee> {
-    const id = route.paramMap.get('id')!;
+    const feeUuid = route.paramMap.get('feeUuid')!;
+    const houseUuid = route.parent!.data['house'].uuid;
+    let fee: Fee | null;
 
-    // new fee
-    if (id === 'new') {
-      const fee: Fee = {endAt: '', quantity: 1, startAt: '', type: null, unit: '', value: 0};
-      return Promise.resolve(fee);
+    if (feeUuid === 'new') {
+      fee = {houseUuid, endAt: '', startAt: '', type: null, unit: '', value: 0, quantity: 1};
+    } else {
+      fee = await this.feeService.get(feeUuid);
     }
 
-    // existing fee
-    const fee = await this.feeService.get(+id);
-    return fee ? fee : Promise.reject();
+    if (!fee) {
+      return Promise.reject();
+    }
+
+    return fee;
   }
 }

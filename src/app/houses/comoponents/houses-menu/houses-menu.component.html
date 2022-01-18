@@ -1,0 +1,12 @@
+<mat-nav-list>
+  <h3 matSubheader i18n>Your Houses</h3>
+  <a mat-list-item *ngFor="let house of houses | async" [routerLink]="['fees', house.uuid]"
+  >
+    {{house | houseName}}
+  </a>
+  <mat-divider></mat-divider>
+  <a mat-list-item [routerLink]="['fees', 'new']">
+    <mat-icon matListIcon>add</mat-icon>
+    <span i18n>New House</span>
+  </a>
+</mat-nav-list>
