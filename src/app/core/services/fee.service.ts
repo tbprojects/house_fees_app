@@ -28,8 +28,8 @@ export class FeeService {
     }
   }
 
-  remove(uuid: string): Promise<void> {
-    return this.db.fees.delete(uuid);
+  remove(uuid: string): Promise<string> {
+    return this.db.fees.delete(uuid).then(() => uuid);
   }
 
 }

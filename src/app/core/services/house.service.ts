@@ -32,7 +32,9 @@ export class HouseService {
     }
   }
 
-  remove(uuid: string): Promise<void> {
-    return this.db.houses.delete(uuid);
+  remove(uuid: string): Promise<string> {
+    return this.db.houses.delete(uuid)
+      .then(() => this.db.fees.where('houseUuid').equals(uuid).delete())
+      .then(() => uuid);
   }
 }
