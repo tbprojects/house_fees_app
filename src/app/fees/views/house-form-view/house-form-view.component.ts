@@ -49,7 +49,7 @@ export class HouseFormViewComponent implements OnInit {
     const house: House = this.form.value;
     await this.houseService.save(house);
     this.snackBar.open($localize `House saved!`);
-    await this.router.navigate(['..'], {relativeTo: this.route});
+    await this.router.navigate(['../..'], {relativeTo: this.route});
   }
 
   async remove() {

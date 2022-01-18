@@ -23,7 +23,6 @@ const routes: Routes = [
     path: ':houseUuid',
     component: FeesViewComponent,
     resolve: {house: HouseResolver},
-    runGuardsAndResolvers: 'always',
     children: [
       {
         path: '',
