@@ -77,7 +77,7 @@ export class FeeListViewComponent implements OnDestroy {
     if (result.dismissedByAction) {
       await this.houseService.remove(this.houseUuid);
       this.snackBar.open($localize `House removed!`);
-      this.router.navigate(['..', 'current'], {relativeTo: this.route});
+      this.router.navigate(['..'], {relativeTo: this.route});
     }
   }
 }

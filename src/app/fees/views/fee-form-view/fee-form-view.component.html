@@ -51,13 +51,3 @@
     </div>
   </div>
 </form>
-
-<ng-template #removeConfirmMessage let-snackbar="snackBarRef">
-  <div class="remove-confirmation">
-    <span i18n>Are you sure?</span>
-    <div>
-      <button mat-button (click)="snackbar.dismiss()" i18n>Cancel</button>
-      <button mat-raised-button color="primary" (click)="snackbar.dismissWithAction()" i18n>Confirm</button>
-    </div>
-  </div>
-</ng-template>
