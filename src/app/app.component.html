@@ -1,5 +1,5 @@
 <mat-sidenav-container class="sidenav">
-  <mat-sidenav #sidenav mode="side" position="end">
+  <mat-sidenav #sidenav mode="side" position="end" (click)="sidenav.toggle()">
     <app-houses-menu></app-houses-menu>
   </mat-sidenav>
 
