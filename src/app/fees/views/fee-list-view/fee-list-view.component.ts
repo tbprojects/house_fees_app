@@ -47,6 +47,11 @@ export class FeeListViewComponent implements OnDestroy {
       map(smallScreen => smallScreen ? this.smallColumns : this.allColumns )
     );
 
+  columnsCount = this.columns
+    .pipe(
+      map(columns => columns.length)
+    );
+
   feeTypeLabelSize = this.smallScreen
     .pipe(
       map(smallScreen => smallScreen ? 'short' : 'regular' )

@@ -7,10 +7,26 @@
 .chart-card {
   flex: 1;
   min-width: 280px;
-  height: 500px;
+  height: calc(100vh - 128px);
 }
 
 .data-card {
   flex: 1;
   min-width: 280px;
+}
+
+.chart-empty-message {
+  opacity: 0.3;
+  display: flex;
+  height: 100%;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.chart-empty-message .mat-icon {
+  font-size: 64px;
+  height: 64px;
+  width: 64px;
 }
