@@ -9,7 +9,7 @@ export class DbClient extends Dexie {
   houses!: Table<House, string>;
 
   constructor() {
-    super('HouseFees');
+    super('HouseFeesApp');
     this.version(1).stores({
       fees: 'uuid,houseUuid',
       houses: 'uuid,lastActiveAt'
