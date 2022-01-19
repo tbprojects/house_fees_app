@@ -17,6 +17,23 @@
         <name/>
         <children>
             <concept_node>
+                <name>1125666118611359006</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
+                        <language>en-GB</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>pl-PL</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
                 <name>1241348629231510663</name>
                 <definition_loaded>false</definition_loaded>
                 <description/>
@@ -63,6 +80,23 @@
                     </translation>
                     <translation>
                         <language>en-GB</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
+                <name>1699966195118546002</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
+                        <language>en-GB</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>pl-PL</language>
                         <approved>false</approved>
                     </translation>
                 </translations>
@@ -136,6 +170,23 @@
                 </translations>
             </concept_node>
             <concept_node>
+                <name>3207675172035736595</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
+                        <language>en-GB</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>pl-PL</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
                 <name>3768927257183755959</name>
                 <definition_loaded>false</definition_loaded>
                 <description/>
@@ -187,18 +238,35 @@
                 </translations>
             </concept_node>
             <concept_node>
-                <name>5012084291992448490</name>
+                <name>4803590780227403154</name>
                 <definition_loaded>false</definition_loaded>
                 <description/>
                 <comment/>
                 <default_text/>
                 <translations>
                     <translation>
-                        <language>pl-PL</language>
+                        <language>en-GB</language>
                         <approved>false</approved>
                     </translation>
                     <translation>
+                        <language>pl-PL</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
+                <name>4889394489603503458</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
                         <language>en-GB</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>pl-PL</language>
                         <approved>false</approved>
                     </translation>
                 </translations>
@@ -222,23 +290,6 @@
             </concept_node>
             <concept_node>
                 <name>5162686434580248853</name>
-                <definition_loaded>false</definition_loaded>
-                <description/>
-                <comment/>
-                <default_text/>
-                <translations>
-                    <translation>
-                        <language>pl-PL</language>
-                        <approved>false</approved>
-                    </translation>
-                    <translation>
-                        <language>en-GB</language>
-                        <approved>false</approved>
-                    </translation>
-                </translations>
-            </concept_node>
-            <concept_node>
-                <name>5280218112746407598</name>
                 <definition_loaded>false</definition_loaded>
                 <description/>
                 <comment/>
@@ -306,6 +357,23 @@
                 </translations>
             </concept_node>
             <concept_node>
+                <name>5864597964962390694</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
+                        <language>en-GB</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>pl-PL</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
                 <name>6399303218734406494</name>
                 <definition_loaded>false</definition_loaded>
                 <description/>
@@ -318,6 +386,23 @@
                     </translation>
                     <translation>
                         <language>en-GB</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
+                <name>6491244319845476471</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
+                        <language>en-GB</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>pl-PL</language>
                         <approved>false</approved>
                     </translation>
                 </translations>
@@ -459,6 +544,23 @@
                 </translations>
             </concept_node>
             <concept_node>
+                <name>756274443033384162</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
+                        <language>en-GB</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>pl-PL</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
                 <name>7585826646011739428</name>
                 <definition_loaded>false</definition_loaded>
                 <description/>
@@ -539,6 +641,23 @@
                     </translation>
                     <translation>
                         <language>en-GB</language>
+                        <approved>false</approved>
+                    </translation>
+                </translations>
+            </concept_node>
+            <concept_node>
+                <name>8953033926734869941</name>
+                <definition_loaded>false</definition_loaded>
+                <description/>
+                <comment/>
+                <default_text/>
+                <translations>
+                    <translation>
+                        <language>en-GB</language>
+                        <approved>false</approved>
+                    </translation>
+                    <translation>
+                        <language>pl-PL</language>
                         <approved>false</approved>
                     </translation>
                 </translations>
