@@ -16,7 +16,18 @@ export class FeeMappers {
       tooltip: {
         callbacks: {
           label: (tooltipItem: any) => {
-            return `${tooltipItem.dataset.label}: ${formatNumber(tooltipItem.raw, this.localeId, '1.2-2')}`;
+            const value = tooltipItem.dataset.data[tooltipItem.dataIndex];
+            const quantity = tooltipItem.dataset.quantities[tooltipItem.dataIndex];
+            const unit = tooltipItem.dataset.units[tooltipItem.dataIndex];
+            const heading = tooltipItem.dataset.label;
+            const valueLabel = `• ${$localize `Value`}: ${formatNumber(value, this.localeId, '1.2-2')}`;
+            const quantityLabel = `• ${$localize `Quantity`}: ${formatNumber(quantity, this.localeId, '1.0-2')} ${unit}`
+            const noQuantityLabel = `• ${$localize `Quantity`}: ${$localize `unmeasurable`}`
+            return [
+              heading,
+              valueLabel,
+              unit === '' ? noQuantityLabel : quantityLabel
+            ];
           },
           footer: ([tooltipItem]: any[]) => {
             const sum = Object.entries(tooltipItem.parsed._stacks.y)
@@ -53,7 +64,7 @@ export class FeeMappers {
     const types = new Set<FeeType>(fees.map(fee => fee.type!));
 
     // setup sums grouped by month start date
-    const sums = new Map<number, {[feeType: string]: number}>(
+    const sums = new Map<number, {[feeType: string]: {value: number, quantity: number, unit: string}}>(
       eachMonthOfInterval({start, end}).map(weekStart => [weekStart.getTime(), {}])
     );
 
@@ -68,9 +79,12 @@ export class FeeMappers {
         const monthStart = monthStartDate.getTime();
         const monthEnd = endOfMonth(monthStart).getTime();
         const feeMonthDays = differenceInCalendarDays(Math.min(feeEnd, monthEnd), Math.max(feeStart, monthStart)) + 1;
-        const feeMonthValue = fee.value * feeMonthDays / feeDays;
-        const monthValue = sums.get(monthStart)![fee.type!] ?? 0;
-        sums.get(monthStart)![fee.type!] = monthValue + feeMonthValue;
+        const monthSums = sums.get(monthStart)![fee.type!] ??= {value: 0, quantity: 0, unit: fee.unit};
+        monthSums.value += fee.value * feeMonthDays / feeDays;
+        monthSums.quantity += fee.quantity * feeMonthDays / feeDays;
+        if (fee.unit !== monthSums.unit) {
+          monthSums.unit = '';
+        }
       });
     });
 
@@ -84,8 +98,10 @@ export class FeeMappers {
       const hoverBackgroundColor = borderColor;
       const backgroundColor = `${borderColor}88`
       const label = feeConfig.get(type)!.label;
-      const data = Array.from(sums.values()).map(sum => sum[type] ?? 0);
-      return {label, fill, data, borderColor, backgroundColor, hoverBackgroundColor};
+      const data = Array.from(sums.values()).map(sum => sum[type]?.value ?? 0);
+      const quantities = Array.from(sums.values()).map(sum => sum[type]?.quantity ?? 0);
+      const units = Array.from(sums.values()).map(sum => sum[type]?.unit ?? '');
+      return {label, fill, data, quantities, units, borderColor, backgroundColor, hoverBackgroundColor};
     });
 
     return {labels, datasets, type: this.type, options: this.options};
