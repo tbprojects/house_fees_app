@@ -6,6 +6,7 @@ export class HouseFormBuilder {
   buildForm(): FormGroup {
     return new FormGroup({
       uuid: new FormControl(null),
+      version: new FormControl(null),
       name: new FormControl(null)
     })
   }

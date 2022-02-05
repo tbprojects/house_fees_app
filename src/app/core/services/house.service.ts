@@ -25,11 +25,19 @@ export class HouseService {
 
   save(house: House): Promise<House> {
     if (house.uuid) {
+      house.version ??= 0;
+      house.version++;
       return this.db.houses.update(house.uuid, house).then(() => house);
     } else {
-      const house = {uuid: uuidv4()};
+      house.uuid = uuidv4();
+      house.version = 1;
       return this.db.houses.add(house).then(uuid => this.db.houses.get(uuid)).then(house => house!);
     }
+  }
+
+  updateLastActiveAt(house: House): Promise<House> {
+    const updatedHouse = {...house, lastActiveAt: Date.now()};
+    return this.db.houses.update(house.uuid!, updatedHouse).then(() => updatedHouse);
   }
 
   remove(uuid: string): Promise<string> {

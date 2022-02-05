@@ -10,6 +10,7 @@ export class FeeFormBuilder implements OnDestroy {
   buildForm(): FormGroup {
     const form = new FormGroup({
       uuid: new FormControl(null),
+      version: new FormControl(null),
       houseUuid: new FormControl(null, {validators: [Validators.required]}),
       type: new FormControl(null, {validators: [Validators.required]}),
       quantity: new FormControl(0, {validators: [Validators.required, Validators.min(1)]}),

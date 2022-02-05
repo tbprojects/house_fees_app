@@ -17,6 +17,6 @@ export class HouseResolver implements Resolve<House> {
       return Promise.reject();
     }
 
-    return this.houseService.save({...house, lastActiveAt: Date.now()})
+    return this.houseService.updateLastActiveAt(house);
   }
 }

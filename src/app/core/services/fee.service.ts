@@ -21,9 +21,12 @@ export class FeeService {
 
   save(fee: Fee): Promise<Fee> {
     if (fee.uuid) {
+      fee.version ??= 0;
+      fee.version++;
       return this.db.fees.update(fee.uuid, fee).then(() => fee);
     } else {
       fee.uuid = uuidv4()
+      fee.version = 1;
       return this.db.fees.add(fee).then(uuid => this.db.fees.get(uuid)).then(fee => fee!);
     }
   }
