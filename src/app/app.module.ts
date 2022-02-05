@@ -5,7 +5,6 @@ import { CoreModule } from 'core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HousesModule } from './houses/houses.module';
 import { MaterialModule } from './material/material.module';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { MaterialModule } from './material/material.module';
     BrowserAnimationsModule,
     CoreModule,
     MaterialModule,
-    HousesModule,
     AppRoutingModule
   ],
   bootstrap: [AppComponent]

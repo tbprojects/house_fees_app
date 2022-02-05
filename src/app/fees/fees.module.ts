@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 import { SharedModule } from 'shared/shared.module';
-import { HousesModule } from '../houses/houses.module';
 import { MaterialModule } from '../material/material.module';
 import { FeeChartComponent } from './components/fee-chart/fee-chart.component';
 import { FeeTypeLabelComponent } from './components/fee-type-label/fee-type-label.component';
@@ -31,7 +30,6 @@ import { HouseNewViewComponent } from './views/house-new-view/house-new-view.com
   imports: [
     CommonModule,
     MaterialModule,
-    HousesModule,
     FeesRoutingModule,
     ReactiveFormsModule,
     NgChartsModule,

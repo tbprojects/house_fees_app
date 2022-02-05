@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HouseService } from 'core/services/house.service';
+import { HouseService } from '../../services/house.service';
 
 @Component({
   selector: 'app-houses-menu',
