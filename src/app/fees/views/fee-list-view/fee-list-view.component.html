@@ -6,6 +6,9 @@
   <button mat-icon-button (click)="sync()">
     <mat-icon>sync</mat-icon>
   </button>
+  <a mat-icon-button [routerLink]="['../manage', houseUuid]">
+    <mat-icon>share</mat-icon>
+  </a>
   <span class="spacer"></span>
   <a type="button" mat-raised-button color="primary" routerLink="new" i18n>New Fee</a>
 </div>

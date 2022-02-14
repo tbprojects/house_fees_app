@@ -3,7 +3,6 @@ import { Inject, Injectable } from '@angular/core';
 import { liveQuery, Observable } from 'dexie';
 import { catchError, lastValueFrom, mapTo, of, tap } from 'rxjs';
 import { dateDbFormat } from 'utils/date-db-format';
-import { isFeeSynced } from 'utils/is-fee-synced';
 import { v4 as uuidv4 } from 'uuid';
 import { API_URL } from '../tokens/api-url';
 import { Fee } from '../types/fee';
@@ -41,13 +40,21 @@ export class HouseService {
 
   save(house: House): Promise<House> {
     if (house.uuid) {
-      house.updatedAt = dateDbFormat();
-      return this.db.houses.update(house.uuid, house).then(() => house);
+      return this.update(house);
     } else {
-      house.uuid = uuidv4();
-      house.createdAt = dateDbFormat();
-      return this.db.houses.add(house).then(uuid => this.db.houses.get(uuid)).then(house => house!);
+      return this.create(house);
     }
+  }
+
+  create(house: House): Promise<House> {
+    house.uuid ??= uuidv4();
+    house.updatedAt = dateDbFormat();
+    return this.db.houses.add(house).then(uuid => this.db.houses.get(uuid)).then(house => house!);
+  }
+
+  update(house: House): Promise<House> {
+    house.updatedAt = dateDbFormat();
+    return this.db.houses.update(house.uuid!, house).then(() => house);
   }
 
   updateLastActiveAt(house: House): Promise<House> {
@@ -56,7 +63,7 @@ export class HouseService {
   }
 
   remove(uuid: string): Promise<string> {
-    const changes: Partial<House> = {removedAt: dateDbFormat()};
+    const changes: Partial<House> = {updatedAt: dateDbFormat(), removedAt: dateDbFormat()};
     return this.db.houses.update(uuid, changes).then(() => uuid);
   }
 
@@ -69,14 +76,15 @@ export class HouseService {
 
     const fees = await this.db.fees
       .where({houseUuid: uuid})
-      .filter((fee) => !isFeeSynced(fee, house.syncedAt))
+      .filter((fee) => !house.syncedAt || (fee.updatedAt ?? '') > house.syncedAt)
       .toArray();
 
     return lastValueFrom(
-      this.http.post<{house: House, fees: Fee[]}>(`${this.apiUrl}/sync`, {house, fees}).pipe(
-        tap(({house, fees}) => {
-          // TODO save to indexDB
-          console.log(house, fees);
+      this.http.post<{house: House, fees: Fee[]}>(`${this.apiUrl}/sync`, {house: house, fees}).pipe(
+        tap((syncedPayload) => {
+          const syncedAt = dateDbFormat();
+          this.db.houses.put({...house, ...syncedPayload.house, syncedAt})
+          this.db.fees.bulkPut(syncedPayload.fees);
         }),
         mapTo(true),
         tap({error: console.error}),

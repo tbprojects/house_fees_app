@@ -3,9 +3,8 @@ import { FeeType } from './fee-type';
 export interface Fee {
   uuid?: string;
   houseUuid?: string;
-  createdAt?: string;
-  updatedAt?: string;
   removedAt?: string;
+  updatedAt?: string;
   type: FeeType | null;
   quantity: number;
   unit: string;

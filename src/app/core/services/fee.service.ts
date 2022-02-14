@@ -28,17 +28,25 @@ export class FeeService {
 
   save(fee: Fee): Promise<Fee> {
     if (fee.uuid) {
-      fee.updatedAt = dateDbFormat();
-      return this.db.fees.update(fee.uuid, fee).then(() => fee);
+      return this.update(fee);
     } else {
-      fee.uuid = uuidv4();
-      fee.createdAt = dateDbFormat();
-      return this.db.fees.add(fee).then(uuid => this.db.fees.get(uuid)).then(fee => fee!);
+      return this.create(fee);
     }
   }
 
+  create(fee: Fee): Promise<Fee> {
+    fee.uuid ??= uuidv4();
+    fee.updatedAt = dateDbFormat();
+    return this.db.fees.add(fee).then(uuid => this.db.fees.get(uuid)).then(fee => fee!);
+  }
+
+  update(fee: Fee): Promise<Fee> {
+    fee.updatedAt = dateDbFormat();
+    return this.db.fees.update(fee.uuid!, fee).then(() => fee);
+  }
+
   remove(uuid: string): Promise<string> {
-    const changes: Partial<Fee> = {removedAt: dateDbFormat()}
+    const changes: Partial<Fee> = {updatedAt: dateDbFormat(), removedAt: dateDbFormat()}
     return this.db.fees.update(uuid, changes).then(() => uuid);
   }
 

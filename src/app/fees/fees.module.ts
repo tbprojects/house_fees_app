@@ -13,6 +13,7 @@ import { FeeListViewComponent } from './views/fee-list-view/fee-list-view.compon
 import { FeesViewComponent } from './views/fees-view/fees-view.component';
 import { HouseCurrentViewComponent } from './views/house-current-view/house-current-view.component';
 import { HouseFormViewComponent } from './views/house-form-view/house-form-view.component';
+import { HouseManageViewComponent } from './views/house-manage-view/house-manage-view.component';
 import { HouseNewViewComponent } from './views/house-new-view/house-new-view.component';
 
 @NgModule({
@@ -25,7 +26,8 @@ import { HouseNewViewComponent } from './views/house-new-view/house-new-view.com
     FeeListViewComponent,
     HouseFormViewComponent,
     HouseCurrentViewComponent,
-    HouseNewViewComponent
+    HouseNewViewComponent,
+    HouseManageViewComponent
   ],
   imports: [
     CommonModule,
