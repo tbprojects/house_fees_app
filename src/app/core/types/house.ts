@@ -1,6 +1,9 @@
 export interface House {
   uuid?: string;
-  version?: number;
+  createdAt?: string;
+  updatedAt?: string;
+  removedAt?: string;
+  syncedAt?: string;
   lastActiveAt?: number;
   name?: string;
 }

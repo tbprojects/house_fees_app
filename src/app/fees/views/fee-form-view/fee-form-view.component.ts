@@ -2,9 +2,9 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FeeService } from 'core/services/fee.service';
-import { Fee } from 'core/types/fee';
 import { lastValueFrom } from 'rxjs';
 import { ConfirmSnackbarComponent } from 'shared/components/confirm-snackbar/confirm-snackbar.component';
+import { dateDbFormat } from 'utils/date-db-format';
 import { feeConfig } from '../../data/fee-config';
 import { FeeFormBuilder } from '../../services/fee.form-builder';
 
@@ -33,7 +33,10 @@ export class FeeFormViewComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(({fee}) => {
-      this.form.patchValue(fee);
+      const {startAt, endAt, ...formValue} = fee;
+      formValue.startAt = new Date(startAt);
+      formValue.endAt = new Date(endAt);
+      this.form.patchValue(formValue);
       this.form.markAsPristine();
       this.form.markAsUntouched();
       this.elRef.nativeElement.scrollIntoView({behavior: 'smooth'});
@@ -47,7 +50,9 @@ export class FeeFormViewComponent implements OnInit {
       return;
     }
 
-    const fee: Fee = this.form.value;
+    const {startAt, endAt, ...fee} = this.form.value;
+    fee.startAt = dateDbFormat(startAt);
+    fee.endAt = dateDbFormat(endAt);
     await this.feeService.save(fee);
     this.snackBar.open($localize `Fee saved!`);
     this.router.navigate(['..'], {relativeTo: this.route});
