@@ -1,12 +1,9 @@
 <div class="header">
   <h2 class="header-title">{{house | async | houseName}}</h2>
-  <button mat-icon-button routerLink="edit">
+  <a mat-icon-button routerLink="edit">
     <mat-icon>edit</mat-icon>
-  </button>
-  <button mat-icon-button (click)="sync()">
-    <mat-icon>sync</mat-icon>
-  </button>
-  <a mat-icon-button [routerLink]="['../manage', houseUuid]">
+  </a>
+  <a mat-icon-button [routerLink]="['share']">
     <mat-icon>share</mat-icon>
   </a>
   <span class="spacer"></span>

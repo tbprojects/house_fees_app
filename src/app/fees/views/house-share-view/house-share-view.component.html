@@ -1,0 +1,18 @@
+<div class="header">
+  <h2 class="header-title" i18n>Sharing</h2>
+  <span class="spacer"></span>
+  <button type="button" mat-button routerLink=".." [replaceUrl]="true" i18n>Close</button>
+  <button type="button" mat-raised-button color="primary" (click)="disableSharing()" i18n>Disable</button>
+</div>
+
+<p i18n>Use following QR code to open <strong>{{house | async | houseName}}</strong> on mobile:</p>
+
+<canvas #qrCanvas></canvas>
+
+<p i18n>or use following URL on another device:</p>
+
+<ng-container *ngIf="shareUrl | async as url">
+  <code>{{url}}</code>
+  <button type="button" mat-button color="secondary" (click)="onCopyUrl()" [cdkCopyToClipboard]="url" i18n>Copy</button>
+</ng-container>
+

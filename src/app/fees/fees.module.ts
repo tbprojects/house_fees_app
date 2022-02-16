@@ -1,3 +1,4 @@
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,9 +13,11 @@ import { FeeFormViewComponent } from './views/fee-form-view/fee-form-view.compon
 import { FeeListViewComponent } from './views/fee-list-view/fee-list-view.component';
 import { FeesViewComponent } from './views/fees-view/fees-view.component';
 import { HouseCurrentViewComponent } from './views/house-current-view/house-current-view.component';
+import { HouseEnableShareViewComponent } from './views/house-enable-share-view/house-enable-share-view.component';
 import { HouseFormViewComponent } from './views/house-form-view/house-form-view.component';
 import { HouseManageViewComponent } from './views/house-manage-view/house-manage-view.component';
 import { HouseNewViewComponent } from './views/house-new-view/house-new-view.component';
+import { HouseShareViewComponent } from './views/house-share-view/house-share-view.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { HouseNewViewComponent } from './views/house-new-view/house-new-view.com
     HouseFormViewComponent,
     HouseCurrentViewComponent,
     HouseNewViewComponent,
-    HouseManageViewComponent
+    HouseManageViewComponent,
+    HouseShareViewComponent,
+    HouseEnableShareViewComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +40,7 @@ import { HouseNewViewComponent } from './views/house-new-view/house-new-view.com
     FeesRoutingModule,
     ReactiveFormsModule,
     NgChartsModule,
+    ClipboardModule,
     SharedModule
   ]
 })

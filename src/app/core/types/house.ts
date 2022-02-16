@@ -3,6 +3,7 @@ export interface House {
   updatedAt?: string;
   removedAt?: string;
   syncedAt?: string;
+  syncEnabled?: boolean;
   lastActiveAt?: number;
   name?: string;
 }

@@ -57,9 +57,19 @@ export class HouseService {
     return this.db.houses.update(house.uuid!, house).then(() => house);
   }
 
-  updateLastActiveAt(house: House): Promise<House> {
-    const updatedHouse = {...house, lastActiveAt: Date.now()};
-    return this.db.houses.update(house.uuid!, updatedHouse).then(() => updatedHouse);
+  updateLastActiveAt(uuid: string): Promise<string> {
+    const changes: Partial<House> = {lastActiveAt: Date.now()}
+    return this.db.houses.update(uuid, changes).then(() => uuid);
+  }
+
+  enableSync(uuid: string): Promise<string> {
+    const changes: Partial<House> = {syncEnabled: true};
+    return this.db.houses.update(uuid, changes).then(() => uuid);
+  }
+
+  disableSync(uuid: string): Promise<string> {
+    const changes: Partial<House> = {syncEnabled: false};
+    return this.db.houses.update(uuid, changes).then(() => uuid);
   }
 
   remove(uuid: string): Promise<string> {

@@ -1,0 +1,24 @@
+<div class="header">
+  <h2 class="header-title" i18n>Enable sharing</h2>
+  <span class="spacer"></span>
+  <button type="button" mat-button routerLink=".." [replaceUrl]="true" i18n>Cancel</button>
+  <button type="button" mat-raised-button color="primary" (click)="enableSharing()" i18n>Enable</button>
+</div>
+
+<p i18n>You are about to share <strong>{{house | async | houseName}}</strong></p>
+
+<div class="info">
+  <mat-icon color="primary">task_alt</mat-icon>
+  <span i18n>Currently your data is stored <strong>locally</strong> only.</span>
+</div>
+
+<div class="info">
+  <mat-icon color="primary">task_alt</mat-icon>
+  <span i18n>Enable sharing to store your data <strong>in cloud</strong>.</span>
+</div>
+
+<div class="info">
+  <mat-icon color="primary">task_alt</mat-icon>
+  <span i18n>We do not store any personal data.</span>
+</div>
+

@@ -6,7 +6,7 @@ import { FeeService } from 'core/services/fee.service';
 import { HouseService } from 'core/services/house.service';
 import { Fee } from 'core/types/fee';
 import { House } from 'core/types/house';
-import { concatMap, map, Subject, switchMap, takeUntil } from 'rxjs';
+import { concatMap, distinctUntilKeyChanged, map, Subject, switchMap, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-fee-list-view',
@@ -25,12 +25,9 @@ export class FeeListViewComponent implements OnInit, OnDestroy {
       map(data => data['house'] as House)
     );
 
-  houseName = this.house.pipe(
-    map(house => house.name)
-  );
-
   fees = this.house
     .pipe(
+      distinctUntilKeyChanged('uuid'),
       switchMap(house => this.feeService.getAll(house.uuid!))
     );
 
@@ -59,7 +56,7 @@ export class FeeListViewComponent implements OnInit, OnDestroy {
     );
 
   get houseUuid(): string {
-    return this.route.snapshot.data['house'].uuid;
+    return this.route.snapshot.parent!.data['house'].uuid;
   }
 
   constructor(

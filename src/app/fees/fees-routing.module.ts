@@ -6,9 +6,13 @@ import { FeeFormViewComponent } from './views/fee-form-view/fee-form-view.compon
 import { FeeListViewComponent } from './views/fee-list-view/fee-list-view.component';
 import { FeesViewComponent } from './views/fees-view/fees-view.component';
 import { HouseCurrentViewComponent } from './views/house-current-view/house-current-view.component';
+import { HouseEnableShareViewComponent } from './views/house-enable-share-view/house-enable-share-view.component';
+import { HouseEnableShareViewGuard } from './views/house-enable-share-view/house-enable-share-view.guard';
 import { HouseFormViewComponent } from './views/house-form-view/house-form-view.component';
 import { HouseManageViewComponent } from './views/house-manage-view/house-manage-view.component';
 import { HouseNewViewComponent } from './views/house-new-view/house-new-view.component';
+import { HouseShareViewComponent } from './views/house-share-view/house-share-view.component';
+import { HouseShareViewGuard } from './views/house-share-view/house-share-view.guard';
 
 const routes: Routes = [
   {
@@ -28,6 +32,7 @@ const routes: Routes = [
     path: ':houseUuid',
     component: FeesViewComponent,
     resolve: {house: HouseResolver},
+    runGuardsAndResolvers: 'always',
     children: [
       {
         path: '',
@@ -38,10 +43,20 @@ const routes: Routes = [
         component: HouseFormViewComponent
       },
       {
+        path: 'share-enable',
+        component: HouseEnableShareViewComponent,
+        canActivate: [HouseEnableShareViewGuard]
+      },
+      {
+        path: 'share',
+        component: HouseShareViewComponent,
+        canActivate: [HouseShareViewGuard]
+      },
+      {
         path: ':feeUuid',
         component: FeeFormViewComponent,
         resolve: {fee: FeeResolver}
-      }
+      },
     ]
   }
 ];

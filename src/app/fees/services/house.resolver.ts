@@ -17,6 +17,8 @@ export class HouseResolver implements Resolve<House> {
       return Promise.reject();
     }
 
-    return this.houseService.updateLastActiveAt(house);
+    await this.houseService.updateLastActiveAt(house.uuid!);
+
+    return house;
   }
 }

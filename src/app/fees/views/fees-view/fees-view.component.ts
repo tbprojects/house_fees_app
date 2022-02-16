@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FeeService } from 'core/services/fee.service';
-import { switchMap } from 'rxjs';
+import { House } from 'core/types/house';
+import { distinctUntilKeyChanged, map, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-fees-view',
@@ -11,7 +12,9 @@ import { switchMap } from 'rxjs';
 export class FeesViewComponent {
   fees = this.route.data
     .pipe(
-      switchMap(data => this.feeService.getAll(data['house'].uuid))
+      map(data => data['house'] as House),
+      distinctUntilKeyChanged('uuid'),
+      switchMap(house => this.feeService.getAll(house.uuid!))
     );
 
   constructor(private feeService: FeeService, private route: ActivatedRoute) {}
