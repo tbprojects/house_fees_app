@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FeeService } from 'core/services/fee.service';
+import { SyncService } from 'core/services/sync.service';
 import { lastValueFrom } from 'rxjs';
 import { ConfirmSnackbarComponent } from 'shared/components/confirm-snackbar/confirm-snackbar.component';
 import { dateDbFormat } from 'utils/date-db-format';
@@ -22,6 +23,7 @@ export class FeeFormViewComponent implements OnInit {
     private fb: FeeFormBuilder,
     private snackBar: MatSnackBar,
     private feeService: FeeService,
+    private syncService: SyncService,
     private route: ActivatedRoute,
     private router: Router,
     private elRef: ElementRef,
@@ -29,6 +31,10 @@ export class FeeFormViewComponent implements OnInit {
 
   get feeUuid(): string {
     return this.form.get('uuid')!.value;
+  }
+
+  get houseUuid(): string {
+    return this.form.get('houseUuid')!.value;
   }
 
   ngOnInit() {
@@ -54,6 +60,7 @@ export class FeeFormViewComponent implements OnInit {
     fee.startAt = dateDbFormat(startAt);
     fee.endAt = dateDbFormat(endAt);
     await this.feeService.save(fee);
+    this.syncService.requestSync(this.houseUuid);
     this.snackBar.open($localize `Fee saved!`);
     this.router.navigate(['..'], {relativeTo: this.route});
   }
@@ -64,6 +71,7 @@ export class FeeFormViewComponent implements OnInit {
 
     if (result.dismissedByAction) {
       await this.feeService.remove(this.feeUuid);
+      this.syncService.requestSync(this.houseUuid);
       this.snackBar.open($localize `Fee removed!`);
       this.router.navigate(['..'], {relativeTo: this.route});
     }

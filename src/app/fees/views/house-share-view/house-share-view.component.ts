@@ -2,6 +2,7 @@ import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/co
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HouseService } from 'core/services/house.service';
+import { SyncService } from 'core/services/sync.service';
 import { House } from 'core/types/house';
 import { map, Subject, takeUntil } from 'rxjs';
 
@@ -23,7 +24,7 @@ export class HouseShareViewComponent implements OnInit, OnDestroy {
   shareUrl = this.house
     .pipe(
       map(house => {
-        const path = this.router.createUrlTree(['../..', 'manage', house.uuid]).toString();
+        const path = this.router.createUrlTree(['../..', 'manage', house.uuid], {relativeTo: this.route}).toString();
         const hostname = window.location.origin;
         return `${hostname}${path}`;
       })
@@ -37,10 +38,13 @@ export class HouseShareViewComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private houseService: HouseService,
+    private syncService: SyncService,
     private snackBar: MatSnackBar
   ) { }
 
   async ngOnInit() {
+    this.syncService.requestSync(this.houseUuid);
+
     // @ts-ignore
     const QRious = (await import('qrious')).default;
     this.shareUrl

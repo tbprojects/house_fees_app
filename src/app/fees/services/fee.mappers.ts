@@ -11,6 +11,7 @@ export class FeeMappers {
   private type: ChartType = 'bar';
   private options: ChartOptions = {
     responsive: true,
+    animation: false,
     maintainAspectRatio: false,
     plugins: {
       tooltip: {

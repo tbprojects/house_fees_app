@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HouseService } from 'core/services/house.service';
+import { SyncService } from 'core/services/sync.service';
 import { House } from 'core/types/house';
 import { lastValueFrom } from 'rxjs';
 import { ConfirmSnackbarComponent } from 'shared/components/confirm-snackbar/confirm-snackbar.component';
@@ -21,6 +22,7 @@ export class HouseFormViewComponent implements OnInit {
     private fb: HouseFormBuilder,
     private snackBar: MatSnackBar,
     private houseService: HouseService,
+    private syncService: SyncService,
     private route: ActivatedRoute,
     private router: Router,
     private elRef: ElementRef,
@@ -48,6 +50,7 @@ export class HouseFormViewComponent implements OnInit {
 
     const house: House = this.form.value;
     await this.houseService.save(house);
+    this.syncService.requestSync(this.houseUuid);
     this.snackBar.open($localize `House saved!`);
     await this.router.navigate(['..'], {relativeTo: this.route});
   }
@@ -58,6 +61,7 @@ export class HouseFormViewComponent implements OnInit {
 
     if (result.dismissedByAction) {
       await this.houseService.remove(this.houseUuid);
+      this.syncService.requestSync(this.houseUuid);
       this.snackBar.open($localize `House removed!`);
       await this.router.navigate(['../..'], {relativeTo: this.route});
     }

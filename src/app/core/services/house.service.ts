@@ -1,11 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { liveQuery, Observable } from 'dexie';
-import { catchError, lastValueFrom, mapTo, of, tap } from 'rxjs';
 import { dateDbFormat } from 'utils/date-db-format';
 import { v4 as uuidv4 } from 'uuid';
-import { API_URL } from '../tokens/api-url';
-import { Fee } from '../types/fee';
 import { House } from '../types/house';
 import { DbClient } from './db-client';
 
@@ -14,11 +10,7 @@ import { DbClient } from './db-client';
 })
 export class HouseService {
 
-  constructor(
-    private db: DbClient,
-    private http: HttpClient,
-    @Inject(API_URL) private apiUrl: string
-  ) { }
+  constructor(private db: DbClient) { }
 
   getAll(): Observable<House[]> {
     return liveQuery(() => this.db.houses
@@ -75,31 +67,5 @@ export class HouseService {
   remove(uuid: string): Promise<string> {
     const changes: Partial<House> = {updatedAt: dateDbFormat(), removedAt: dateDbFormat()};
     return this.db.houses.update(uuid, changes).then(() => uuid);
-  }
-
-  async sync(uuid: string): Promise<boolean> {
-    const house = await this.db.houses.get(uuid);
-    if (!house) {
-      console.error(new Error(`missing house with uuid: ${uuid}`));
-      return false;
-    }
-
-    const fees = await this.db.fees
-      .where({houseUuid: uuid})
-      .filter((fee) => !house.syncedAt || (fee.updatedAt ?? '') > house.syncedAt)
-      .toArray();
-
-    return lastValueFrom(
-      this.http.post<{house: House, fees: Fee[]}>(`${this.apiUrl}/sync`, {house: house, fees}).pipe(
-        tap((syncedPayload) => {
-          const syncedAt = dateDbFormat();
-          this.db.houses.put({...house, ...syncedPayload.house, syncedAt})
-          this.db.fees.bulkPut(syncedPayload.fees);
-        }),
-        mapTo(true),
-        tap({error: console.error}),
-        catchError(() => of(false))
-      )
-    );
   }
 }
