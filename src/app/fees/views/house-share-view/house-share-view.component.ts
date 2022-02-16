@@ -1,3 +1,4 @@
+import { PlatformLocation } from '@angular/common';
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -25,8 +26,9 @@ export class HouseShareViewComponent implements OnInit, OnDestroy {
     .pipe(
       map(house => {
         const path = this.router.createUrlTree(['../..', 'manage', house.uuid], {relativeTo: this.route}).toString();
+        const baseHref = this.location.getBaseHrefFromDOM();
         const hostname = window.location.origin;
-        return `${hostname}${path}`;
+        return `${hostname}${baseHref}${path.replace('/', '')}`;
       })
     )
 
@@ -39,7 +41,8 @@ export class HouseShareViewComponent implements OnInit, OnDestroy {
     private router: Router,
     private houseService: HouseService,
     private syncService: SyncService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private location: PlatformLocation,
   ) { }
 
   async ngOnInit() {
