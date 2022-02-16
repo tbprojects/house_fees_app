@@ -1,15 +1,16 @@
 import { FeeType } from 'core/types/fee-type';
 
-interface FeeConfig {
+export interface FeeConfig {
   label: string;
   unit: string;
   color: string;
+  icon: string;
 }
 
 export const feeConfig = new Map<FeeType, FeeConfig>([
-  [FeeType.water, {label: $localize `Water`, unit: $localize `m3`, color: '#2196f3'}],
-  [FeeType.heating, {label: $localize `Heating`, unit: $localize `kWh`, color: '#f44336'}],
-  [FeeType.energy, {label: $localize `Energy`, unit: $localize `kWh`, color: '#ffc107'}],
-  [FeeType.internet, {label: $localize `Internet`, unit: $localize `month`, color: '#4caf50'}],
-  [FeeType.garbage, {label: $localize `Garbage`, unit: $localize `month`, color: '#9e9e9e'}],
+  [FeeType.water, {label: $localize `Water`, unit: $localize `m3`, color: '#2196f3', icon: 'water_drop'}],
+  [FeeType.heating, {label: $localize `Heating`, unit: $localize `kWh`, color: '#f44336', icon: 'thermostat'}],
+  [FeeType.energy, {label: $localize `Energy`, unit: $localize `kWh`, color: '#ffc107', icon: 'bolt'}],
+  [FeeType.internet, {label: $localize `Internet`, unit: $localize `month`, color: '#4caf50', icon: 'wifi'}],
+  [FeeType.garbage, {label: $localize `Garbage`, unit: $localize `month`, color: '#9e9e9e', icon: 'delete_sweep'}],
 ])

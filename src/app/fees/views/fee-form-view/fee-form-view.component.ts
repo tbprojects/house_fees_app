@@ -19,6 +19,10 @@ export class FeeFormViewComponent implements OnInit {
   feeTypeOptions = Array.from(feeConfig.entries()).map(([value, {label}]) => ({value, label}));
   form = this.fb.buildForm();
 
+  get currentTypeLabel(): string {
+    return feeConfig.get(this.form.value.type)?.label ?? '';
+  }
+
   constructor(
     private fb: FeeFormBuilder,
     private snackBar: MatSnackBar,
