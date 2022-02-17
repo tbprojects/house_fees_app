@@ -5,14 +5,17 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from 'shared/shared.module';
 import { MaterialModule } from '../material/material.module';
 import { HousesMenuComponent } from './components/houses-menu/houses-menu.component';
+import { MissingPageComponent } from './components/missing-page/missing-page.component';
 import { DbClient } from './services/db-client';
 
 @NgModule({
   declarations: [
-    HousesMenuComponent
+    HousesMenuComponent,
+    MissingPageComponent
   ],
   exports: [
-    HousesMenuComponent
+    HousesMenuComponent,
+    MissingPageComponent
   ],
   providers: [
     DbClient

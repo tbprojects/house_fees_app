@@ -9,7 +9,6 @@ import { HouseCurrentViewComponent } from './views/house-current-view/house-curr
 import { HouseEnableShareViewComponent } from './views/house-enable-share-view/house-enable-share-view.component';
 import { HouseEnableShareViewGuard } from './views/house-enable-share-view/house-enable-share-view.guard';
 import { HouseFormViewComponent } from './views/house-form-view/house-form-view.component';
-import { HouseManageViewComponent } from './views/house-manage-view/house-manage-view.component';
 import { HouseNewViewComponent } from './views/house-new-view/house-new-view.component';
 import { HouseShareViewComponent } from './views/house-share-view/house-share-view.component';
 import { HouseShareViewGuard } from './views/house-share-view/house-share-view.guard';
@@ -23,10 +22,6 @@ const routes: Routes = [
   {
     path: 'new',
     component: HouseNewViewComponent
-  },
-  {
-    path: 'manage/:houseUuid',
-    component: HouseManageViewComponent
   },
   {
     path: ':houseUuid',

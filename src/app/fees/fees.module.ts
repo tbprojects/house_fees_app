@@ -15,7 +15,6 @@ import { FeesViewComponent } from './views/fees-view/fees-view.component';
 import { HouseCurrentViewComponent } from './views/house-current-view/house-current-view.component';
 import { HouseEnableShareViewComponent } from './views/house-enable-share-view/house-enable-share-view.component';
 import { HouseFormViewComponent } from './views/house-form-view/house-form-view.component';
-import { HouseManageViewComponent } from './views/house-manage-view/house-manage-view.component';
 import { HouseNewViewComponent } from './views/house-new-view/house-new-view.component';
 import { HouseShareViewComponent } from './views/house-share-view/house-share-view.component';
 
@@ -30,7 +29,6 @@ import { HouseShareViewComponent } from './views/house-share-view/house-share-vi
     HouseFormViewComponent,
     HouseCurrentViewComponent,
     HouseNewViewComponent,
-    HouseManageViewComponent,
     HouseShareViewComponent,
     HouseEnableShareViewComponent
   ],

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { catchError, concatMap, lastValueFrom, mapTo, of, Subject, tap } from 'rxjs';
+import { catchError, concatMap, lastValueFrom, map, mapTo, of, Subject, tap } from 'rxjs';
 import { dateDbFormat } from 'utils/date-db-format';
 import { API_URL } from '../tokens/api-url';
 import { Fee } from '../types/fee';
@@ -27,6 +27,14 @@ export class SyncService {
 
   requestSync(uuid: string): void {
     this.syncRequests.next(uuid);
+  }
+
+  checkIfExists(uuid: string): Promise<boolean> {
+    return lastValueFrom(
+      this.http.post<{exists: boolean}>(`${this.apiUrl}/exists`, {uuid}).pipe(
+        map(data => data.exists)
+      )
+    )
   }
 
   async sync(uuid: string): Promise<SyncStatus> {

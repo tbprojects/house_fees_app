@@ -27,6 +27,13 @@
           <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2169891949323177908" datatype="html">
+        <source>Whoops, there is nothing here...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/missing-page/missing-page.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6399303218734406494" datatype="html">
         <source>Water</source>
         <context-group purpose="location">
@@ -388,13 +395,6 @@
           <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6174550817124609621" datatype="html">
-        <source>Synchronization completed!</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/views/house-manage-view/house-manage-view.component.ts</context>
-          <context context-type="linenumber">31</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="8422875188929347819" datatype="html">
         <source>Sharing</source>
         <context-group purpose="location">
@@ -441,14 +441,14 @@
         <source>URL copied to clipboard!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/views/house-share-view/house-share-view.component.ts</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8110697408879872297" datatype="html">
         <source>Sharing disabled!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/views/house-share-view/house-share-view.component.ts</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">69</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7515883357904500238" datatype="html">

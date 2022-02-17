@@ -25,7 +25,7 @@ export class HouseShareViewComponent implements OnInit, OnDestroy {
   shareUrl = this.house
     .pipe(
       map(house => {
-        const path = this.router.createUrlTree(['../..', 'manage', house.uuid], {relativeTo: this.route}).toString();
+        const path = this.router.createUrlTree(['../..', house.uuid], {relativeTo: this.route}).toString();
         const baseHref = this.location.getBaseHrefFromDOM();
         const hostname = window.location.origin;
         return `${hostname}${baseHref}${path.replace('/', '')}`;
