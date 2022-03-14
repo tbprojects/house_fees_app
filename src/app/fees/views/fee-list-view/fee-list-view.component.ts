@@ -1,9 +1,9 @@
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnDestroy, TrackByFunction } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FeeService } from 'core/services/fee.service';
 import { HouseService } from 'core/services/house.service';
+import { ScreenSizeService } from 'core/services/screen-size.service';
 import { Fee } from 'core/types/fee';
 import { House } from 'core/types/house';
 import { distinctUntilKeyChanged, map, Subject, switchMap, takeUntil } from 'rxjs';
@@ -30,13 +30,9 @@ export class FeeListViewComponent implements OnDestroy {
       switchMap(house => this.feeService.getAll(house.uuid!))
     );
 
-  smallScreen = this.breakpoint
-    .observe([Breakpoints.XSmall])
+  smallScreen = this.screenSize.smallScreen
     .pipe(
       takeUntil(this.destroyed),
-      map(result => {
-        return result.matches
-      })
     );
 
   columns = this.smallScreen
@@ -64,7 +60,7 @@ export class FeeListViewComponent implements OnDestroy {
     private snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router,
-    private breakpoint: BreakpointObserver
+    private screenSize: ScreenSizeService
   ) {}
 
   ngOnDestroy() {

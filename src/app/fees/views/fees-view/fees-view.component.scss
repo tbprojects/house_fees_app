@@ -6,13 +6,22 @@
 
 .chart-card {
   flex: 1;
-  min-width: 280px;
+  min-width: 0;
   height: calc(100vh - 128px);
 }
 
 .data-card {
   flex: 1;
-  min-width: 280px;
+  min-width: 0;
+  height: calc(100vh - 128px);
+  overflow: auto;
+}
+
+:host-context(.small-screen) .data-card {
+  width: 100%;
+  overflow: visible;
+  height: auto;
+  flex: auto;
 }
 
 .chart-empty-message {
