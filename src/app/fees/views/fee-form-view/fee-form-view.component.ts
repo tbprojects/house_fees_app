@@ -3,6 +3,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FeeService } from 'core/services/fee.service';
 import { SyncService } from 'core/services/sync.service';
+import { FeeType } from 'core/types/fee-type';
 import { lastValueFrom } from 'rxjs';
 import { ConfirmSnackbarComponent } from 'shared/components/confirm-snackbar/confirm-snackbar.component';
 import { dateDbFormat } from 'utils/date-db-format';
@@ -16,8 +17,15 @@ import { FeeFormBuilder } from '../../services/fee.form-builder';
   providers: [FeeFormBuilder]
 })
 export class FeeFormViewComponent implements OnInit {
+  private descriptionLabel = $localize `Description`;
+  private unitLabel = $localize `Unit`;
+  FeeType = FeeType;
   feeTypeOptions = Array.from(feeConfig.entries()).map(([value, {label}]) => ({value, label}));
   form = this.fb.buildForm();
+
+  get unitFieldLabel(): string {
+    return this.form.get('type')!.value === FeeType.other ?  this.descriptionLabel : this.unitLabel;
+  }
 
   get currentTypeLabel(): string {
     return feeConfig.get(this.form.value.type)?.label ?? '';

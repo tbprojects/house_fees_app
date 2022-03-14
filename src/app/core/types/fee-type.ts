@@ -4,6 +4,8 @@ export enum FeeType {
   energy = 'energy',
   garbage = 'garbage',
   internet = 'internet',
+  rent = 'rent',
+  other = 'other',
 }
 
 

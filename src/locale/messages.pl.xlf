@@ -105,6 +105,10 @@
           <context context-type="sourcefile">src/app/fees/data/fee-config.ts</context>
           <context context-type="linenumber">15</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/data/fee-config.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="1287281401168125074" datatype="html">
         <source>Garbage</source>
@@ -112,6 +116,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/data/fee-config.ts</context>
           <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3504008095976461399" datatype="html">
+        <source>Rent</source>
+        <target>Czynsz</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/data/fee-config.ts</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8693603235657020323" datatype="html">
+        <source>Other</source>
+        <target>Inne</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/data/fee-config.ts</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6555318547274416232" datatype="html">
@@ -230,14 +250,6 @@
           <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8932917860978648376" datatype="html">
-        <source>Unit</source>
-        <target>Jednostka</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.html</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="7022070615528435141" datatype="html">
         <source>Delete</source>
         <target>Usuń</target>
@@ -282,12 +294,28 @@
           <context context-type="linenumber">18,19</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="4902817035128594900" datatype="html">
+        <source>Description</source>
+        <target>Opis</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.ts</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8932917860978648376" datatype="html">
+        <source>Unit</source>
+        <target>Jednostka</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.ts</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8487801354947856472" datatype="html">
         <source>Fill required fields</source>
         <target>Wypełnij wymagane pola</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.ts</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">67</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/views/house-form-view/house-form-view.component.ts</context>
@@ -299,7 +327,7 @@
         <target>Opłata zapisana!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.ts</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3878044329961545625" datatype="html">
@@ -307,7 +335,7 @@
         <target>Opłata usunięta!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.ts</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1507949699959470925" datatype="html">
