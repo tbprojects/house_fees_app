@@ -22,6 +22,11 @@ export class HouseShareViewComponent implements OnInit, OnDestroy {
       map(data => data['house'] as House)
     );
 
+  shareUuid = this.house
+    .pipe(
+      map(house => house.uuid)
+    );
+
   shareUrl = this.house
     .pipe(
       map(house => {
@@ -30,7 +35,7 @@ export class HouseShareViewComponent implements OnInit, OnDestroy {
         const hostname = window.location.origin;
         return `${hostname}${baseHref}${path.replace('/', '')}`;
       })
-    )
+    );
 
   get houseUuid(): string {
     return this.route.snapshot.parent!.data['house'].uuid;

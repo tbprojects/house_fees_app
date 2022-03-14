@@ -6,7 +6,11 @@
   </a>
   <mat-divider></mat-divider>
   <a mat-list-item [routerLink]="['fees', 'new']">
-    <mat-icon matListIcon>add</mat-icon>
+    <mat-icon matListIcon color="primary">add</mat-icon>
     <span i18n>New House</span>
+  </a>
+  <a mat-list-item (click)="importHouse()">
+    <mat-icon matListIcon color="primary">cloud_download</mat-icon>
+    <span i18n>Import House</span>
   </a>
 </mat-nav-list>

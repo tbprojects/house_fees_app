@@ -16,3 +16,10 @@
   <button type="button" mat-button color="secondary" (click)="onCopyUrl()" [cdkCopyToClipboard]="url" i18n>Copy</button>
 </ng-container>
 
+<p i18n>or use following UUID with <strong>Import House</strong> feature:</p>
+
+<ng-container *ngIf="shareUuid | async as uuid">
+  <code>{{uuid}}</code>
+  <button type="button" mat-button color="secondary" (click)="onCopyUrl()" [cdkCopyToClipboard]="uuid" i18n>Copy</button>
+</ng-container>
+

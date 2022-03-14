@@ -13,6 +13,43 @@
           <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="782300507084381629" datatype="html">
+        <source>Enter UUID</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/house-import/house-import.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2159130950882492111" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/house-import/house-import.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/house-enable-share-view/house-enable-share-view.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/house-form-view/house-form-view.component.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/shared/components/confirm-snackbar/confirm-snackbar.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="727310260821422069" datatype="html">
+        <source> Import </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/house-import/house-import.component.html</context>
+          <context context-type="linenumber">8,10</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="756274443033384162" datatype="html">
         <source>Your Houses</source>
         <context-group purpose="location">
@@ -29,6 +66,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/shared/pipes/house-name.pipe.ts</context>
           <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8365215454334084198" datatype="html">
+        <source>Import House</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/core/components/houses-menu/houses-menu.component.html</context>
+          <context context-type="linenumber">14,15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2169891949323177908" datatype="html">
@@ -244,25 +288,6 @@
           <context context-type="linenumber">13,14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2159130950882492111" datatype="html">
-        <source>Cancel</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.html</context>
-          <context context-type="linenumber">52,53</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/views/house-enable-share-view/house-enable-share-view.component.html</context>
-          <context context-type="linenumber">4,5</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/fees/views/house-form-view/house-form-view.component.html</context>
-          <context context-type="linenumber">17,18</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src/app/shared/components/confirm-snackbar/confirm-snackbar.component.html</context>
-          <context context-type="linenumber">3</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="3768927257183755959" datatype="html">
         <source>Save</source>
         <context-group purpose="location">
@@ -472,19 +497,30 @@
           <context context-type="sourcefile">src/app/fees/views/house-share-view/house-share-view.component.html</context>
           <context context-type="linenumber">16,17</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/house-share-view/house-share-view.component.html</context>
+          <context context-type="linenumber">23,24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2384052858111311312" datatype="html">
+        <source>or use following UUID with <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Import House<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> feature:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/views/house-share-view/house-share-view.component.html</context>
+          <context context-type="linenumber">19,21</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6695963641404475248" datatype="html">
         <source>URL copied to clipboard!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/views/house-share-view/house-share-view.component.ts</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">69</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8110697408879872297" datatype="html">
         <source>Sharing disabled!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/views/house-share-view/house-share-view.component.ts</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7515883357904500238" datatype="html">
