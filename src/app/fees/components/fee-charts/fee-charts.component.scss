@@ -1,0 +1,19 @@
+:host {
+  display: block;
+
+  &,
+  canvas,
+  .mat-tab-group,
+  ::ng-deep .mat-tab-body-wrapper
+  {
+    height: 100%;
+  }
+
+  ::ng-deep .mat-tab-header {
+    margin-bottom: 1rem;
+  }
+
+  .mat-tab-group.single-tab ::ng-deep .mat-tab-header {
+    display: none;
+  }
+}

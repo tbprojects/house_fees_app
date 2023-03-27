@@ -5,7 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgChartsModule } from 'ng2-charts';
 import { SharedModule } from 'shared/shared.module';
 import { MaterialModule } from '../material/material.module';
-import { FeeChartComponent } from './components/fee-chart/fee-chart.component';
+import { FeeChartsComponent } from './components/fee-charts/fee-charts.component';
 import { FeeTypeLabelComponent } from './components/fee-type-label/fee-type-label.component';
 import { FeesRoutingModule } from './fees-routing.module';
 import { FeeRatePipe } from './pipes/fee-rate.pipe';
@@ -22,7 +22,7 @@ import { HouseShareViewComponent } from './views/house-share-view/house-share-vi
   declarations: [
     FeesViewComponent,
     FeeFormViewComponent,
-    FeeChartComponent,
+    FeeChartsComponent,
     FeeRatePipe,
     FeeTypeLabelComponent,
     FeeListViewComponent,

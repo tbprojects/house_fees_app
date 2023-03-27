@@ -1,5 +1,5 @@
 <mat-card class="chart-card" *ngIf="fees | async as fees">
-  <app-fee-chart *ngIf="fees.length > 0; else noFeesTmpl" [fees]="fees"></app-fee-chart>
+  <app-fee-charts *ngIf="fees.length > 0; else noFeesTmpl" [fees]="fees"></app-fee-charts>
   <ng-template #noFeesTmpl>
     <div class="chart-empty-message">
       <mat-icon>insert_chart_outlined</mat-icon>

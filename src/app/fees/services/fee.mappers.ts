@@ -3,69 +3,84 @@ import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 import { ChartConfiguration, ChartDataset, ChartOptions, DefaultDataPoint } from 'chart.js';
 import { Fee } from 'core/types/fee';
 import { FeeType } from 'core/types/fee-type';
-import { differenceInCalendarDays, eachMonthOfInterval, endOfDay, endOfMonth, startOfDay } from 'date-fns';
+import {
+  differenceInCalendarDays,
+  eachMonthOfInterval,
+  endOfDay,
+  endOfMonth,
+  endOfYear,
+  getYear,
+  startOfDay,
+  startOfYear
+} from 'date-fns';
 import { feeConfig } from '../data/fee-config';
+
+export type MonthChart = ChartConfiguration<'bar', DefaultDataPoint<'bar'>, string>;
 
 @Injectable({providedIn: 'root'})
 export class FeeMappers {
-  private options: ChartOptions<'bar'> = {
-    responsive: true,
-    animation: false,
-    maintainAspectRatio: false,
-    plugins: {
-      tooltip: {
-        callbacks: {
-          label: (tooltipItem: any) => {
-            const value = tooltipItem.dataset.data[tooltipItem.dataIndex];
-            const quantity = tooltipItem.dataset.quantities[tooltipItem.dataIndex];
-            const unit = tooltipItem.dataset.units[tooltipItem.dataIndex];
-            const heading = tooltipItem.dataset.label;
-            const valueLabel = `• ${$localize `Value`}: ${formatNumber(value, this.localeId, '1.2-2')}`;
-            const quantityLabel = `• ${$localize `Quantity`}: ${formatNumber(quantity, this.localeId, '1.0-2')} ${unit}`
-            const noQuantityLabel = `• ${$localize `Quantity`}: ${$localize `unmeasurable`}`
-            return [
-              heading,
-              valueLabel,
-              unit === '' ? noQuantityLabel : quantityLabel
-            ];
-          },
-          footer: ([tooltipItem]: any[]) => {
-            const sum = Object.entries(tooltipItem.parsed._stacks.y)
-              .reduce((acc, [index, value]) => {
-                return isNaN(+index) ? acc : acc + (value as number);
-              }, 0)
-            const formattedValue = formatNumber(sum, this.localeId, '1.2-2');
-            const totalLabel = $localize `Month sum`;
-            return `${totalLabel}: ${formattedValue}`;
+  private getOptions({min, max}: {min: number, max: number}): ChartOptions<'bar'> {
+    return {
+      responsive: true,
+      animation: false,
+      maintainAspectRatio: false,
+      plugins: {
+        tooltip: {
+          callbacks: {
+            label: (tooltipItem: any) => {
+              const value = tooltipItem.dataset.data[tooltipItem.dataIndex];
+              const quantity = tooltipItem.dataset.quantities[tooltipItem.dataIndex];
+              const unit = tooltipItem.dataset.units[tooltipItem.dataIndex];
+              const heading = tooltipItem.dataset.label;
+              const valueLabel = `• ${$localize`Value`}: ${formatNumber(value, this.localeId, '1.2-2')}`;
+              const quantityLabel = `• ${$localize`Quantity`}: ${formatNumber(quantity, this.localeId, '1.0-2')} ${unit}`
+              const noQuantityLabel = `• ${$localize`Quantity`}: ${$localize`unmeasurable`}`
+              return [
+                heading,
+                valueLabel,
+                unit === '' ? noQuantityLabel : quantityLabel
+              ];
+            },
+            footer: ([tooltipItem]: any[]) => {
+              const sum = Object.entries(tooltipItem.parsed._stacks.y)
+                .reduce((acc, [index, value]) => {
+                  return isNaN(+index) ? acc : acc + (value as number);
+                }, 0)
+              const formattedValue = formatNumber(sum, this.localeId, '1.2-2');
+              const totalLabel = $localize`Month sum`;
+              return `${totalLabel}: ${formattedValue}`;
+            }
           }
-        }
+        },
       },
-    },
-    scales: {
-      x: {stacked: true, title: {display: true, text: $localize `Month`}},
-      y: {stacked: true, title: {display: true, text: $localize `Value`}}
+      scales: {
+        x: {stacked: true, title: {display: true, text: $localize`Month`}},
+        y: {suggestedMin: min, suggestedMax: max, stacked: true, title: {display: true, text: $localize`Value`}}
+      }
     }
   }
 
   constructor(@Inject(LOCALE_ID) private localeId: string) {
   }
 
-  feesToChart(fees: Fee[]): ChartConfiguration<'bar', DefaultDataPoint<'bar'>, string> {
-    // return empty config when there are not fees
+  feesToChartMap(fees: Fee[]): Map<number, MonthChart> {
+    const chartMap = new Map<number, MonthChart>();
+
+    // return empty config when there are no fees
     if (fees.length === 0) {
-      return {data: {labels: [], datasets: []}, type: 'bar', options: this.options};
+      return chartMap;
     }
 
     // discover boundary dates
-    const start: number = Math.min(...fees.map(fee => new Date(fee.startAt).getTime()));
-    const end: number = Math.max(...fees.map(fee => new Date(fee.endAt).getTime()));
+    const start: number = Math.min(...fees.map(fee => startOfYear(new Date(fee.startAt)).getTime()));
+    const end: number = Math.max(...fees.map(fee => endOfYear(new Date(fee.endAt)).getTime()));
 
     // discover used fee types
     const types = new Set<FeeType>(fees.map(fee => fee.type!));
 
     // setup sums grouped by month start date
     const sums = new Map<number, {[feeType: string]: {value: number, quantity: number, unit: string}}>(
-      eachMonthOfInterval({start, end}).map(weekStart => [weekStart.getTime(), {}])
+      eachMonthOfInterval({start, end}).map(monthStartDate => [monthStartDate.getTime(), {}])
     );
 
     fees.forEach(fee => {
@@ -88,22 +103,48 @@ export class FeeMappers {
       });
     });
 
-    // prepare labels by months
-    const labels: string[] = Array.from(sums.keys()).map(date => formatDate(date, 'MM.y', this.localeId));
+    // discover min max
+    const min = 0;
+    const max = Math.max(...Array.from(sums.values())
+      .map(sum => Object.values(sum).reduce((acc, {value}) => acc + value, 0)));
 
-    // prepare datasets per fee type
-    const datasets: ChartDataset<'bar'>[] = Array.from(types).map(type => {
-      const fill = 'origin';
-      const borderColor = feeConfig.get(type)!.color;
-      const hoverBackgroundColor = borderColor;
-      const backgroundColor = `${borderColor}88`
-      const label = feeConfig.get(type)!.label;
-      const data = Array.from(sums.values()).map(sum => sum[type]?.value ?? 0);
-      const quantities = Array.from(sums.values()).map(sum => sum[type]?.quantity ?? 0);
-      const units = Array.from(sums.values()).map(sum => sum[type]?.unit ?? '');
-      return {label, fill, data, quantities, units, borderColor, backgroundColor, hoverBackgroundColor};
+    // spawn charts
+    new Set(Array.from(sums.keys()).map((startAt) => getYear(startAt))).forEach((year) => {
+      chartMap.set(year, {data: {labels: [], datasets: []}, type: 'bar', options: this.getOptions({min, max})});
     });
 
-    return {data: {labels, datasets}, type: 'bar', options: this.options};
+    // make charts
+    Array.from(chartMap.entries()).forEach(([year, chart]) => {
+      const filterFn = ([startAt]: [number, unknown]) => getYear(startAt) === year;
+
+      // prepare labels by months
+      const labels: string[] = Array.from(sums.entries())
+        .filter(filterFn)
+        .map(([startAt]) => formatDate(startAt, 'MM.y', this.localeId));
+
+      // prepare datasets per fee type
+      const datasets: ChartDataset<'bar'>[] = Array.from(types).map(type => {
+        const fill = 'origin';
+        const borderColor = feeConfig.get(type)!.color;
+        const hoverBackgroundColor = borderColor;
+        const backgroundColor = `${borderColor}88`
+        const label = feeConfig.get(type)!.label;
+        const data = Array.from(sums.entries())
+          .filter(filterFn)
+          .map(([_, sum]) => sum[type]?.value ?? 0);
+        const quantities = Array.from(sums.entries())
+          .filter(filterFn)
+          .map(([_, sum]) => sum[type]?.quantity ?? 0);
+        const units = Array.from(sums.entries())
+          .filter(filterFn)
+          .map(([_, sum]) => sum[type]?.unit ?? '');
+
+        return {label, fill, data, quantities, units, borderColor, backgroundColor, hoverBackgroundColor};
+      });
+
+      chart.data = {labels, datasets};
+    });
+
+    return chartMap;
   }
 }
