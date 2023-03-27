@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { MatSnackBarRef } from '@angular/material/snack-bar';
 
 @Component({
@@ -8,7 +8,7 @@ import { MatSnackBarRef } from '@angular/material/snack-bar';
   styleUrls: ['./house-import.component.scss']
 })
 export class HouseImportComponent {
-  uuid = new FormControl('', {validators: [Validators.required]});
+  uuid = new UntypedFormControl('', {validators: [Validators.required]});
 
   constructor(@Inject(MatSnackBarRef) public snackbar: MatSnackBarRef<any>) { }
 
