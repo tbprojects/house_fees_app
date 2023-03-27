@@ -1,6 +1,6 @@
 import { formatDate, formatNumber } from '@angular/common';
 import { Inject, Injectable, LOCALE_ID } from '@angular/core';
-import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
+import { ChartConfiguration, ChartDataset, ChartOptions, DefaultDataPoint } from 'chart.js';
 import { Fee } from 'core/types/fee';
 import { FeeType } from 'core/types/fee-type';
 import { differenceInCalendarDays, eachMonthOfInterval, endOfDay, endOfMonth, startOfDay } from 'date-fns';
@@ -8,8 +8,7 @@ import { feeConfig } from '../data/fee-config';
 
 @Injectable({providedIn: 'root'})
 export class FeeMappers {
-  private type: ChartType = 'bar';
-  private options: ChartOptions = {
+  private options: ChartOptions<'bar'> = {
     responsive: true,
     animation: false,
     maintainAspectRatio: false,
@@ -51,10 +50,10 @@ export class FeeMappers {
   constructor(@Inject(LOCALE_ID) private localeId: string) {
   }
 
-  feesToChart(fees: Fee[]): {type: ChartType, labels: string[], datasets: ChartDataset[], options: ChartOptions} {
+  feesToChart(fees: Fee[]): ChartConfiguration<'bar', DefaultDataPoint<'bar'>, string> {
     // return empty config when there are not fees
     if (fees.length === 0) {
-      return {labels: [], datasets: [], type: this.type, options: this.options};
+      return {data: {labels: [], datasets: []}, type: 'bar', options: this.options};
     }
 
     // discover boundary dates
@@ -93,7 +92,7 @@ export class FeeMappers {
     const labels: string[] = Array.from(sums.keys()).map(date => formatDate(date, 'MM.y', this.localeId));
 
     // prepare datasets per fee type
-    const datasets: ChartDataset[] = Array.from(types).map(type => {
+    const datasets: ChartDataset<'bar'>[] = Array.from(types).map(type => {
       const fill = 'origin';
       const borderColor = feeConfig.get(type)!.color;
       const hoverBackgroundColor = borderColor;
@@ -105,6 +104,6 @@ export class FeeMappers {
       return {label, fill, data, quantities, units, borderColor, backgroundColor, hoverBackgroundColor};
     });
 
-    return {labels, datasets, type: this.type, options: this.options};
+    return {data: {labels, datasets}, type: 'bar', options: this.options};
   }
 }
