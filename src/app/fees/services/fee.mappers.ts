@@ -25,6 +25,35 @@ export class FeeMappers {
       animation: false,
       maintainAspectRatio: false,
       plugins: {
+        legend: {
+          onHover: (e, legendItem, legend) => {
+            const legendTooltip = document.querySelector('.legend-tooltip') as HTMLDivElement;
+            const legendDataset = legend.chart.data.datasets[legendItem.datasetIndex] as
+              (ChartDataset<"bar", number[]> & {quantities: number[], units: string[]});
+
+            const sum = legendDataset.data.reduce((acc, value) => acc + value, 0);
+            const formattedSum = formatNumber(sum, this.localeId, '1.2-2');
+
+            const quantities = legendDataset.quantities.reduce((acc, quantity, index) => {
+              const unit = legendDataset.units[index];
+              return !quantity ? acc : {...acc, [unit]: ((acc[unit] ?? 0) + quantity)};
+            }, {} as {[s: string]: number});
+            const formattedQuantities = Object.entries(quantities)
+              .map(([unit, quantity]) => `${formatNumber(quantity, this.localeId, '1.0-2')} ${unit}`).join(', ');
+
+            const sumLabel = $localize`Year sum`;
+            const valueLabel = `• ${$localize`Value`}: ${formattedSum}`;
+            const quantityLabel = `• ${$localize`Quantity`}: ${formattedQuantities}`
+            legendTooltip.innerHTML = `<strong>${sumLabel}:</strong><br>${valueLabel}<br>${quantityLabel}`;
+            legendTooltip.style.left = `${e.x}px`;
+            legendTooltip.style.top = `${e.y}px`;
+            legendTooltip.style.display = 'block';
+          },
+          onLeave() {
+            const legendTooltip = document.querySelector('.legend-tooltip') as HTMLDivElement;
+            legendTooltip.style.display = 'none';
+          }
+        },
         tooltip: {
           callbacks: {
             label: (tooltipItem: any) => {
@@ -41,7 +70,7 @@ export class FeeMappers {
                 unit === '' ? noQuantityLabel : quantityLabel
               ];
             },
-            footer: ([tooltipItem]: any[]) => {
+            afterTitle: ([tooltipItem]: any[]) => {
               const sum = Object.entries(tooltipItem.parsed._stacks.y)
                 .reduce((acc, [index, value]) => {
                   return isNaN(+index) ? acc : acc + (value as number);
@@ -54,7 +83,7 @@ export class FeeMappers {
         },
       },
       scales: {
-        x: {stacked: true, title: {display: true, text: $localize`Month`}},
+        x: {stacked: true, title: {display: false, text: $localize`Month`}},
         y: {suggestedMin: min, suggestedMax: max, stacked: true, title: {display: true, text: $localize`Value`}}
       }
     }
@@ -120,7 +149,7 @@ export class FeeMappers {
       // prepare labels by months
       const labels: string[] = Array.from(sums.entries())
         .filter(filterFn)
-        .map(([startAt]) => formatDate(startAt, 'MM.y', this.localeId));
+        .map(([startAt]) => formatDate(startAt, 'MMM', this.localeId));
 
       // prepare datasets per fee type
       const datasets: ChartDataset<'bar'>[] = Array.from(types).map(type => {

@@ -171,15 +171,22 @@
           <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8790653663794030223" datatype="html">
+        <source>Year sum</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/fees/services/fee.mappers.ts</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6555318547274416232" datatype="html">
         <source>Value</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/services/fee.mappers.ts</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">52</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/services/fee.mappers.ts</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">75</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.html</context>
@@ -194,11 +201,11 @@
         <source>Quantity</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/services/fee.mappers.ts</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">53</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/services/fee.mappers.ts</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">54</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/views/fee-form-view/fee-form-view.component.html</context>
@@ -213,21 +220,21 @@
         <source>unmeasurable</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/services/fee.mappers.ts</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6991144102860941358" datatype="html">
         <source>Month sum</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/services/fee.mappers.ts</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5403684285319082289" datatype="html">
         <source>Month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/fees/services/fee.mappers.ts</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1740362155844426496" datatype="html">
