@@ -26,6 +26,7 @@ export class FeeMappers {
       maintainAspectRatio: false,
       plugins: {
         legend: {
+          onClick: () => {},
           onHover: (e, legendItem, legend) => {
             const legendTooltip = document.querySelector('.legend-tooltip') as HTMLDivElement;
             const legendDataset = legend.chart.data.datasets[legendItem.datasetIndex] as
@@ -41,10 +42,11 @@ export class FeeMappers {
             const formattedQuantities = Object.entries(quantities)
               .map(([unit, quantity]) => `${formatNumber(quantity, this.localeId, '1.0-2')} ${unit}`).join(', ');
 
+            const label = legendItem.text;
             const sumLabel = $localize`Year sum`;
             const valueLabel = `• ${$localize`Value`}: ${formattedSum}`;
             const quantityLabel = `• ${$localize`Quantity`}: ${formattedQuantities}`
-            legendTooltip.innerHTML = `<strong>${sumLabel}:</strong><br>${valueLabel}<br>${quantityLabel}`;
+            legendTooltip.innerHTML = `<strong>${label}<br>${sumLabel}:</strong><br>${valueLabel}<br>${quantityLabel}`;
             legendTooltip.style.left = `${e.x}px`;
             legendTooltip.style.top = `${e.y}px`;
             legendTooltip.style.display = 'block';
@@ -149,7 +151,7 @@ export class FeeMappers {
       // prepare labels by months
       const labels: string[] = Array.from(sums.entries())
         .filter(filterFn)
-        .map(([startAt]) => formatDate(startAt, 'MMM', this.localeId));
+        .map(([startAt]) => formatDate(startAt, 'LLL', this.localeId));
 
       // prepare datasets per fee type
       const datasets: ChartDataset<'bar'>[] = Array.from(types).map(type => {
